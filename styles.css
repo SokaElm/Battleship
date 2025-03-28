@@ -1,0 +1,129 @@
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.playerGameGrid,
+.playerAttackGrid {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(10, 20px);
+  grid-template-rows: repeat(10, 20px);
+  gap: 1px;
+  margin: 25px;
+}
+
+.playerGameGrid > div,
+.playerAttackGrid > div {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  box-shadow: 0 0 0 1px black;
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+.playerGameGrid > div.ship {
+  background-color: blueviolet;
+}
+
+.playerGameGrid > div.hitship,
+.playerAttackGrid > div.hitship {
+  background-color: red;
+  position: relative;
+}
+
+.playerGameGrid > div.missed,
+.playerAttackGrid > div.missed {
+  background-color: grey;
+}
+
+.message {
+  text-align: center;
+  font-size: large;
+  color: aqua;
+}
+
+#game-over {
+  color: red;
+  text-align: center;
+  font-size: large;
+}
+
+.ship-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.draggable-ship {
+  display: flex;
+  cursor: move;
+}
+
+.ship-segment {
+  width: 20px;
+  height: 20px;
+  background-color: blueviolet;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.dragging {
+  opacity: 0.5;
+}
+
+.playerGameGrid::before,
+.playerAttackGrid::before {
+  content: "A B C D E F G H I J";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.playerGameGrid::after,
+.playerAttackGrid::after {
+  position: absolute;
+  left: -20px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+.playerGameGrid::after,
+.playerAttackGrid::after {
+  content: "1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9\A 10";
+  white-space: pre;
+  text-align: right;
+  padding-right: 5px;
+}
+
+.playerGameGrid::before,
+.playerGameGrid::after,
+.playerAttackGrid::before,
+.playerAttackGrid::after {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.playerGameGrid.grid-ready::before,
+.playerGameGrid.grid-ready::after,
+.playerAttackGrid.grid-ready::before,
+.playerAttackGrid.grid-ready::after {
+  visibility: visible;
+  opacity: 1;
+}
